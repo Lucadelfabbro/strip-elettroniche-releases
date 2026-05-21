@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Strip Board IVAO — Download</title>
+  <title>Strip Elettroniche — Download</title>
+  <link rel="icon" type="image/png" href="logo.png" />
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -33,16 +34,8 @@
     }
 
     .ivao-logo svg.emblem {
-      width: 52px;
-      height: 52px;
-    }
-
-    .ivao-logo .wordmark-text {
-      font-size: 1.6rem;
-      font-weight: 800;
-      color: #ffffff;
-      letter-spacing: 0.18em;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      width: 72px;
+      height: 72px;
     }
 
     h1 {
@@ -228,24 +221,27 @@
 
   <header class="header">
     <div class="ivao-logo">
-      <!-- App icon (matches .exe: navy bg, white circle + airplane) -->
-      <svg class="emblem" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="256" height="256" rx="40" fill="#0D2C99"/>
-        <circle cx="128" cy="128" r="104" stroke="white" stroke-width="6" fill="none"/>
-        <path fill="white"
-          d="M128,44 C130,50 144,72 144,100
-             L210,134 L210,150 L144,128
-             L140,198 L162,206 L162,216
-             L128,212 L94,216 L94,206 L116,198
-             L112,128 L46,150 L46,134
-             L112,100 C112,72 126,50 128,44 Z"/>
+      <!-- App logo: front-view airplane inside circle, adapted for dark background -->
+      <svg class="emblem" viewBox="0 0 320 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="160" cy="152" r="106" stroke="#4a6cf7" stroke-width="5" fill="none"/>
+        <!-- Fuselage -->
+        <path fill="white" d="M 160,61 C 164,68 168,84 168,114 L 168,204
+             C 166,216 162,224 160,227
+             C 158,224 154,216 152,204 L 152,114
+             C 152,84 156,68 160,61 Z"/>
+        <!-- Right wing -->
+        <path fill="white" d="M 168,150 L 253,170 L 253,184 L 168,168 Z"/>
+        <!-- Left wing -->
+        <path fill="white" d="M 152,150 L 67,170 L 67,184 L 152,168 Z"/>
+        <!-- Right stabilizer -->
+        <path fill="white" d="M 168,202 L 202,213 L 202,221 L 168,212 Z"/>
+        <!-- Left stabilizer -->
+        <path fill="white" d="M 152,202 L 118,213 L 118,221 L 152,212 Z"/>
       </svg>
-
-      <span class="wordmark-text">IVAO</span>
     </div>
 
-    <h1>Strip Board IVAO</h1>
-    <p class="app-subtitle">Strip Elettroniche</p>
+    <h1>Strip Elettroniche</h1>
+    <p class="app-subtitle">per controllori IVAO</p>
     <p class="tagline">
       Strip elettroniche per controllori TWR e GND.<br>
       Dati live IVAO, integrazione Aurora, pensato per tablet e PC.
