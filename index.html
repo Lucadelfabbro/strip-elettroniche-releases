@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Strip Board IVAO</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #0f1117;
+      color: #e2e8f0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .card {
+      background: #1a1d27;
+      border: 1px solid #2d3148;
+      border-radius: 16px;
+      padding: 3rem 2.5rem;
+      max-width: 560px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    }
+
+    .badge {
+      display: inline-block;
+      background: #1e3a5f;
+      color: #60a5fa;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.8rem;
+      border-radius: 999px;
+      margin-bottom: 1.5rem;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #f1f5f9;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+      color: #94a3b8;
+      font-size: 1rem;
+      margin-bottom: 2.5rem;
+      line-height: 1.6;
+    }
+
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: #2563eb;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 0.9rem 2rem;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.1s;
+      margin-bottom: 1rem;
+    }
+
+    .download-btn:hover { background: #1d4ed8; transform: translateY(-1px); }
+    .download-btn:active { transform: translateY(0); }
+
+    .download-btn svg { flex-shrink: 0; }
+
+    .version-info {
+      color: #64748b;
+      font-size: 0.85rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .version-info span {
+      color: #94a3b8;
+      font-weight: 500;
+    }
+
+    .steps {
+      background: #12151f;
+      border-radius: 10px;
+      padding: 1.5rem;
+      text-align: left;
+      margin-bottom: 2rem;
+    }
+
+    .steps h2 {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #64748b;
+      margin-bottom: 1rem;
+    }
+
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .step:last-child { margin-bottom: 0; }
+
+    .step-num {
+      background: #1e3a5f;
+      color: #60a5fa;
+      font-size: 0.75rem;
+      font-weight: 700;
+      width: 1.4rem;
+      height: 1.4rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    .step p { color: #94a3b8; font-size: 0.9rem; line-height: 1.5; }
+    .step p strong { color: #cbd5e1; }
+
+    .note {
+      color: #475569;
+      font-size: 0.8rem;
+      line-height: 1.6;
+    }
+
+    .loading { color: #64748b; font-size: 0.9rem; }
+    .error { color: #f87171; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="badge">IVAO · Windows</div>
+
+    <h1>Strip Board IVAO</h1>
+    <p class="subtitle">
+      Strip elettroniche per le posizioni TWR e GND.<br>
+      Dati live dalla rete IVAO, pensato per tablet e PC.
+    </p>
+
+    <a class="download-btn" id="download-btn" href="#" style="display:none">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3"/>
+      </svg>
+      Scarica l'installer
+    </a>
+    <p class="loading" id="loading">Caricamento versione in corso…</p>
+    <p class="error" id="error" style="display:none">Impossibile recuperare la versione. <a href="https://github.com/Lucadelfabbro/strip-elettroniche-releases/releases" style="color:#60a5fa">Vai ai releases →</a></p>
+
+    <p class="version-info" id="version-info" style="display:none">
+      Versione <span id="version-label"></span> · <span id="release-date"></span>
+    </p>
+
+    <div class="steps">
+      <h2>Come installare</h2>
+      <div class="step">
+        <div class="step-num">1</div>
+        <p>Scarica il file <strong>.exe</strong> qui sopra e aprilo</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <p>L'installazione è silenziosa — finisce in pochi secondi e l'app si avvia da sola</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <p>Gli <strong>aggiornamenti futuri</strong> arrivano automaticamente: l'app ti avvisa quando è pronto e installa con un clic</p>
+      </div>
+    </div>
+
+    <p class="note">
+      Richiede Windows 10 o superiore · Non serve Node.js o altri programmi<br>
+      Aurora deve avere <em>3rd Party Software Access = YES</em> in F7 → Other
+    </p>
+  </div>
+
+  <script>
+    const API = 'https://api.github.com/repos/Lucadelfabbro/strip-elettroniche-releases/releases/latest';
+
+    fetch(API)
+      .then(r => r.json())
+      .then(data => {
+        const asset = data.assets?.find(a => a.name.endsWith('.exe'));
+        const version = data.tag_name?.replace(/^v/, '') ?? data.name;
+        const date = new Date(data.published_at).toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' });
+
+        document.getElementById('loading').style.display = 'none';
+
+        if (asset) {
+          const btn = document.getElementById('download-btn');
+          btn.href = asset.browser_download_url;
+          btn.querySelector('svg').nextSibling.textContent = ' Scarica l\'installer';
+          btn.style.display = 'inline-flex';
+        }
+
+        document.getElementById('version-label').textContent = version;
+        document.getElementById('release-date').textContent = date;
+        document.getElementById('version-info').style.display = 'block';
+      })
+      .catch(() => {
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('error').style.display = 'block';
+      });
+  </script>
+</body>
+</html>
